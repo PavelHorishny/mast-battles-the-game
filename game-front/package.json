@@ -1,0 +1,16 @@
+{
+  "name": "mast_battles",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "contributors": ["Valerii", "Pavel Horishny"],
+  "license": "ISC",
+  "dependencies": {
+    "electron": "^35.2.0"
+  }
+}
