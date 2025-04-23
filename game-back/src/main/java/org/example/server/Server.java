@@ -1,13 +1,16 @@
 package org.example.server;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import org.java_websocket.WebSocket;
 import org.java_websocket.handshake.ClientHandshake;
 import org.java_websocket.server.WebSocketServer;
 
 import java.net.InetSocketAddress;
+import java.net.UnknownHostException;
 
 public class Server extends WebSocketServer {
-    public Server (int port) {
+    public Server (int port) throws UnknownHostException {
         super(new InetSocketAddress(port));
     }
 
@@ -35,7 +38,13 @@ public class Server extends WebSocketServer {
     @Override
     public void onMessage(WebSocket webSocket, String s) {
         System.out.println("Message from client: " + s);
-        webSocket.send("Message received: " + s);
+        GsonBuilder builder = new GsonBuilder();
+        builder.setPrettyPrinting();
+        Gson gson = builder.create();
+        Message message = gson.fromJson(s, Message.class);
+        System.out.println("Message: " + message);
+        webSocket.send("Message received: " + message.action);
+
     }
 
     @Override
