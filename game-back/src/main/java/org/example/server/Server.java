@@ -7,20 +7,12 @@ import org.java_websocket.handshake.ClientHandshake;
 import org.java_websocket.server.WebSocketServer;
 
 import java.net.InetSocketAddress;
-import java.net.UnknownHostException;
 
 public class Server extends WebSocketServer {
-    public Server (int port) throws UnknownHostException {
+    public Server (int port) {
         super(new InetSocketAddress(port));
     }
 
-/*    public Server (InetSocketAddress address) {
-        super(address);
-    }
-
-    public Server (int port, Draft_6455 draft) {
-        super(new InetSocketAddress(port), Collections.singletonList(draft));
-    }*/
     @Override
     public void onOpen(WebSocket webSocket, ClientHandshake clientHandshake) {
         webSocket.send("Welcome to the external WebSocket API server!");
@@ -43,7 +35,19 @@ public class Server extends WebSocketServer {
         Gson gson = builder.create();
         Message message = gson.fromJson(s, Message.class);
         System.out.println("Message: " + message);
-        webSocket.send("Message received: " + message.action);
+        switch (message.action) {
+            case SELECT -> webSocket.send("Player selected");
+            case NEW_GAME -> webSocket.send("New game started");
+            case RESTORE -> webSocket.send("Game restored");
+            case SETTINGS -> webSocket.send("Settings changed");
+            case MOVEMENTS_START -> webSocket.send("Movements started");
+            case MOVEMENTS_END -> webSocket.send("Movements ended");
+            case END -> webSocket.send("Game ended");
+            case REPAIR -> webSocket.send("Repair started");
+            case HELP -> webSocket.send("Help requested");
+            case SHOT -> webSocket.send("Shot fired");
+        }
+        //webSocket.send("Message received: " + message.action);
 
     }
 
