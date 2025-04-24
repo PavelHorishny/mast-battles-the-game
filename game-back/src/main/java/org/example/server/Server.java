@@ -2,6 +2,8 @@ package org.example.server;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import org.example.services.GameProcessor;
+import org.example.services.GameService;
 import org.java_websocket.WebSocket;
 import org.java_websocket.handshake.ClientHandshake;
 import org.java_websocket.server.WebSocketServer;
@@ -9,6 +11,7 @@ import org.java_websocket.server.WebSocketServer;
 import java.net.InetSocketAddress;
 
 public class Server extends WebSocketServer {
+    private static GameService gameProcessor;
     public Server (int port) {
         super(new InetSocketAddress(port));
     }
@@ -37,7 +40,7 @@ public class Server extends WebSocketServer {
         System.out.println("Message: " + message);
         switch (message.action) {
             case SELECT -> webSocket.send("Player selected");
-            case NEW_GAME -> webSocket.send("New game started");
+            case NEW_GAME -> webSocket.send(gameProcessor.startNewGame());
             case RESTORE -> webSocket.send("Game restored");
             case SETTINGS -> webSocket.send("Settings changed");
             case MOVEMENTS_START -> webSocket.send("Movements started");
@@ -61,5 +64,6 @@ public class Server extends WebSocketServer {
         System.out.println("Server started!");
         setConnectionLostTimeout(0);
         setConnectionLostTimeout(100);
+        gameProcessor = GameProcessor.getInstance();
     }
 }
