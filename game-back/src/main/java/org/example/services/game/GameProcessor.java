@@ -1,8 +1,12 @@
 package org.example.services.game;
 
+import org.example.services.map.MapProcessor;
+import org.example.services.map.MapService;
+
 public final class GameProcessor implements GameService {
 
     private static volatile GameProcessor instance;
+    private static final MapService mapProcessor = MapProcessor.getInstance();
 
     private GameProcessor() {
 
