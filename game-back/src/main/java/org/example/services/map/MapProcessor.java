@@ -1,6 +1,6 @@
 package org.example.services.map;
 
-public class MapProcessor {
+public class MapProcessor implements MapService{
 
     private static volatile MapProcessor instance;
 
