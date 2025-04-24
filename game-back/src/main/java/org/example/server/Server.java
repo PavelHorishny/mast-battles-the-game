@@ -2,8 +2,8 @@ package org.example.server;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import org.example.services.GameProcessor;
-import org.example.services.GameService;
+import org.example.services.game.GameProcessor;
+import org.example.services.game.GameService;
 import org.java_websocket.WebSocket;
 import org.java_websocket.handshake.ClientHandshake;
 import org.java_websocket.server.WebSocketServer;
