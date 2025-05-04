@@ -1,0 +1,46 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  height: 100vh;
+  background: url("backround.png") no-repeat center center fixed;
+  background-size: contain;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Segoe UI", sans-serif;
+}
+
+.menu {
+  background: rgba(40, 185, 247, 0.4);
+  padding: 25px;
+  border-radius: 16px;
+  text-align: center;
+}
+
+.menu h1 {
+  color: #fff;
+  margin-bottom: 30px;
+  font-size: 2.5em;
+}
+
+.menu button {
+  display: block;
+  width: 220px;
+  margin: 12px auto;
+  padding: 12px;
+  font-size: 1.1em;
+  border: none;
+  border-radius: 10px;
+  background-color: #1e90ff;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.25s ease;
+}
+
+.menu button:hover {
+  background-color: #63b3ed;
+}
