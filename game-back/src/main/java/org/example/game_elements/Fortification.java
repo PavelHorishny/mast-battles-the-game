@@ -47,5 +47,6 @@ public class Fortification implements Unit {
         this.shots = fortificationType.getShots();
         this.fire_range = fortificationType.getFire_range();
         this.movePoints = fortificationType.getMovePoints();
+        System.out.println("Fortification is built type: " + type);
     }
 }
