@@ -33,8 +33,9 @@ public final class GameProcessor implements GameService {
 
     @Override
     public String startNewGame() {
-        state.setMap(mapProcessor.getMap());
+        mapProcessor.initializeStandardMap();
         //System.out.println("Starting a new game...");
-        return gson.toJson(state);
+        state.setMap(mapProcessor.getMap());
+        return gson.toJson(state.getMap());
     }
 }
