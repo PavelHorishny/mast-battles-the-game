@@ -1,5 +1,7 @@
 package org.example.services.unit;
 
+import org.example.game_elements.FleetSettings;
+
 public final class UnitProcessor implements UnitService {
     public static volatile UnitProcessor instance;
 
@@ -19,7 +21,7 @@ public final class UnitProcessor implements UnitService {
     }
 
     @Override
-    public void setUpAllUnits() {
+    public void setUpAllUnits(FleetSettings settings) {
 
     }
 }
