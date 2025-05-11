@@ -6,6 +6,7 @@ import org.example.FleetSettings;
 import org.example.State;
 import org.example.services.map.MapProcessor;
 import org.example.services.map.MapService;
+import org.example.services.name.NameProcessor;
 import org.example.services.unit.UnitProcessor;
 
 public final class GameProcessor implements GameService {
@@ -36,6 +37,7 @@ public final class GameProcessor implements GameService {
     @Override
     public String startNewGame() {
         mapProcessor.initializeStandardMap();
+        NameProcessor.getInstance().generateRandomListName();
         //System.out.println("Starting a new game...");
         UnitProcessor.getInstance().setUpAllUnits(FleetSettings.STANDARD_FLEET);
         state.setMap(mapProcessor.getMap());
