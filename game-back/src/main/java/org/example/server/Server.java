@@ -51,6 +51,7 @@ public class Server extends WebSocketServer {
             case REPAIR -> webSocket.send("Repair started");
             case HELP -> webSocket.send("Help requested");
             case SHOT -> webSocket.send("Shot fired");
+            case ERROR -> onError(webSocket, new Exception("Error"));
         }
         //webSocket.send("Message received: " + message.action);
 
