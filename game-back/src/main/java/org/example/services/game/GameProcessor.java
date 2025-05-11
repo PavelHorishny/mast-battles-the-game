@@ -2,9 +2,11 @@ package org.example.services.game;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import org.example.FleetSettings;
 import org.example.State;
 import org.example.services.map.MapProcessor;
 import org.example.services.map.MapService;
+import org.example.services.unit.UnitProcessor;
 
 public final class GameProcessor implements GameService {
 
@@ -33,8 +35,10 @@ public final class GameProcessor implements GameService {
 
     @Override
     public String startNewGame() {
-        state.setMap(mapProcessor.getMap());
+        mapProcessor.initializeStandardMap();
         //System.out.println("Starting a new game...");
-        return gson.toJson(state);
+        UnitProcessor.getInstance().setUpAllUnits(FleetSettings.STANDARD_FLEET);
+        state.setMap(mapProcessor.getMap());
+        return gson.toJson(state.getMap());
     }
 }

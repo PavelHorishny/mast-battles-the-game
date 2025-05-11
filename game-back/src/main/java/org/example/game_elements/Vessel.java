@@ -1,9 +1,15 @@
 package org.example.game_elements;
 
+import lombok.Getter;
+import lombok.ToString;
+
+@ToString
+@Getter
 public class Vessel implements Unit,Movable {
-    private UnitType unitType;
-    private VesselType vesselType;
+    private final UnitType unitType;
+    private final VesselType vesselType;
     private String type;
+    private final boolean isFirstPlayer;
     private int breeze_move_points;
     private int calm_move_points;
     private int storm_move_points;
@@ -11,9 +17,10 @@ public class Vessel implements Unit,Movable {
     private int fire_range;
     private int hit_points;
 
-    public <T> Vessel(T vesselType) {
+    public <T> Vessel(T vesselType, boolean firstPlayer) {
         this.unitType = UnitType.VESSEL;
         this.vesselType= (VesselType) vesselType;
+        this.isFirstPlayer = firstPlayer;
         build();
     }
 

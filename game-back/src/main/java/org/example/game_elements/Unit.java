@@ -7,4 +7,5 @@ public interface Unit {
     void destroy();
     void makeShot(int damage);
     void build();
+
 }

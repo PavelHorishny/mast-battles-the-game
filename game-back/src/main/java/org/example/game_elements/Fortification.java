@@ -1,15 +1,24 @@
 package org.example.game_elements;
 
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
+@ToString
+@Getter
 public class Fortification implements Unit {
-    private UnitType unitType;
-    private FortificationType fortificationType;
+    private final UnitType unitType;
+    private final FortificationType fortificationType;
+    @Setter
+    private boolean firstPlayer;
     private String type;
     private int fire_range;
     private int hit_points;
     private int shots;
     private int movePoints;
 
-    public <T> Fortification(T fortificationType) {
+    public <T> Fortification(T fortificationType, boolean firstPlayer) {
+        this.firstPlayer = firstPlayer;
         this.unitType = UnitType.FORTIFICATION;
         this.fortificationType = (FortificationType) fortificationType;
         build();
