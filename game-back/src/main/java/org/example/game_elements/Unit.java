@@ -7,5 +7,7 @@ public interface Unit {
     void destroy();
     void makeShot(int damage);
     void build();
-
+    UnitType getUnitType();
+    void setId(String id);
+    String getId();
 }
