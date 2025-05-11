@@ -71,7 +71,7 @@ public class MockedData {
     }};
 
     /**
-     * List of two decker ship of the lines names*/
+     * List of two-decker ship of the line names*/
 
     public static final List<String> TWO_DECKER_SHIPS_OF_THE_LINE_NAMES = new ArrayList<>(){{
         add("Nottingham");

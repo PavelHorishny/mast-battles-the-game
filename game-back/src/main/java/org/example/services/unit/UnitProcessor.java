@@ -2,6 +2,7 @@ package org.example.services.unit;
 
 import org.example.FleetSettings;
 import org.example.game_elements.*;
+import org.example.services.name.NameProcessor;
 
 import java.util.ArrayList;
 
@@ -29,6 +30,7 @@ public final class UnitProcessor implements UnitService {
         firstFleet.addAll(createFleet(settings, true));
         firstFleet.addAll(createFleet(settings, false));
 
+        firstFleet.forEach(unit -> NameProcessor.getInstance().getName(unit));
         firstFleet.forEach(unit -> System.out.println(unit.toString()));
         System.out.println(firstFleet.size());
         System.out.println("Setting up all units with the provided settings.");

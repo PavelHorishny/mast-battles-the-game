@@ -12,6 +12,7 @@ public class Fortification implements Unit {
     @Setter
     private boolean firstPlayer;
     private String type;
+    private String id;
     private int fire_range;
     private int hit_points;
     private int shots;
@@ -56,5 +57,10 @@ public class Fortification implements Unit {
         this.shots = fortificationType.getShots();
         this.fire_range = fortificationType.getFire_range();
         this.movePoints = fortificationType.getMovePoints();
+    }
+
+    @Override
+    public void setId(String id) {
+        this.id = id;
     }
 }

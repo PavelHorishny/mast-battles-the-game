@@ -9,6 +9,7 @@ public class Vessel implements Unit,Movable {
     private final UnitType unitType;
     private final VesselType vesselType;
     private String type;
+    private String id;
     private final boolean isFirstPlayer;
     private int breeze_move_points;
     private int calm_move_points;
@@ -59,6 +60,11 @@ public class Vessel implements Unit,Movable {
         this.calm_move_points = vesselType.getCalm_move_points();
         this.storm_move_points = vesselType.getStorm_move_points();
         System.out.println("Vessel is built type: " + type);
+    }
+
+    @Override
+    public void setId(String id) {
+        this.id = id;
     }
 
     @Override
