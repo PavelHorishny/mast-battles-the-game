@@ -1,6 +1,6 @@
 package org.example.services.unit;
 
-import org.example.game_elements.FleetSettings;
+import org.example.FleetSettings;
 
 public interface UnitService {
     void setUpAllUnits(FleetSettings settings);
