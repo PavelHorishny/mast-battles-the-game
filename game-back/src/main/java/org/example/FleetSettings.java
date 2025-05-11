@@ -1,6 +1,8 @@
-package org.example.game_elements;
+package org.example;
 
 import lombok.Getter;
+import org.example.game_elements.FortificationType;
+import org.example.game_elements.VesselType;
 
 @Getter
 public enum FleetSettings {
@@ -36,6 +38,10 @@ public enum FleetSettings {
                     VesselType.GALLEON,
                     VesselType.STEAM_FRIGATE,
                     VesselType.BATTERY,
+                    VesselType.GALLEY,
+                    VesselType.GALLEY,
+                    VesselType.GALLEY,
+                    VesselType.GALLEY,
                     VesselType.CORVETTE,
                     VesselType.MONITOR,
                     VesselType.STEAMSHIP,
