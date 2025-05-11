@@ -1,9 +1,14 @@
 package org.example.map;
 
+import lombok.Getter;
+import lombok.Setter;
+import org.example.game_elements.Unit;
+@Getter
+@Setter
 public class Surface {
     private Coordinates coordinates;
     private SurfaceType type;
-    //private GameUnit unit;
+    private Unit unit;
     //private Fortification fortification;
     private boolean isUnderAttack;
 
