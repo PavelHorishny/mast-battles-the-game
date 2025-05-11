@@ -2,6 +2,7 @@ package org.example.game_elements;
 
 import lombok.Getter;
 import lombok.ToString;
+import org.example.map.Coordinates;
 
 @ToString
 @Getter
@@ -11,6 +12,7 @@ public class Vessel implements Unit,Movable {
     private String type;
     private String id;
     private final boolean isFirstPlayer;
+    private Coordinates coordinates;
     private int breeze_move_points;
     private int calm_move_points;
     private int storm_move_points;
@@ -26,8 +28,8 @@ public class Vessel implements Unit,Movable {
     }
 
     @Override
-    public void place() {
-
+    public void place(Coordinates coordinates) {
+        this.coordinates = coordinates;
     }
 
     @Override
