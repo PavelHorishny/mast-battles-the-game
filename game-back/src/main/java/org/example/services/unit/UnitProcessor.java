@@ -2,15 +2,19 @@ package org.example.services.unit;
 
 import org.example.FleetSettings;
 import org.example.game_elements.*;
+import org.example.services.map.MapProcessor;
+import org.example.services.map.MapService;
 import org.example.services.name.NameProcessor;
 
 import java.util.ArrayList;
 
 public final class UnitProcessor implements UnitService {
     public static volatile UnitProcessor instance;
+    private final MapService mapProcessor;
 
     private UnitProcessor() {
         // private constructor to prevent instantiation
+        this.mapProcessor = MapProcessor.getInstance();
     }
 
     public static UnitProcessor getInstance() {
@@ -26,13 +30,14 @@ public final class UnitProcessor implements UnitService {
 
     @Override
     public void setUpAllUnits(FleetSettings settings) {
-        ArrayList<Unit> firstFleet = new ArrayList<>();
-        firstFleet.addAll(createFleet(settings, true));
-        firstFleet.addAll(createFleet(settings, false));
+        ArrayList<Unit> fleet = new ArrayList<>();
+        fleet.addAll(createFleet(settings, true));
+        fleet.addAll(createFleet(settings, false));
 
-        firstFleet.forEach(unit -> NameProcessor.getInstance().getName(unit));
-        firstFleet.forEach(unit -> System.out.println(unit.toString()));
-        System.out.println(firstFleet.size());
+        fleet.forEach(unit -> NameProcessor.getInstance().getName(unit));
+        mapProcessor.placeUnitsOnMap(fleet);
+        fleet.forEach(unit -> System.out.println(unit.toString()));
+        System.out.println(fleet.size());
         System.out.println("Setting up all units with the provided settings.");
     }
     private ArrayList<Unit> createFleet(FleetSettings settings, boolean firstPlayer) {
