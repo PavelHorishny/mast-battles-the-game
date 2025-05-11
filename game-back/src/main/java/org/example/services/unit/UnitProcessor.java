@@ -29,24 +29,12 @@ public final class UnitProcessor implements UnitService {
         firstFleet.addAll(createFleet(settings, true));
         firstFleet.addAll(createFleet(settings, false));
 
-/*        FortificationType[] tmp = settings.getFortifications();
-        VesselType [] tmp2 = settings.getVessels();
-        for (FortificationType fortificationType : tmp) {
-            firstFleet.add(UnitFactory.create(true, fortificationType));
-            //firstFleet.add(FortificationFactory.createFortification(fortificationType));
-        }
-        for (VesselType vesselType : tmp2) {
-            firstFleet.add(UnitFactory.create(true, vesselType));
-            //firstFleet.add(VesselFactory.createVessel(vesselType));
-        }*/
-
-        // Implementation for setting up all units
-        // This is a placeholder implementation
         firstFleet.forEach(unit -> System.out.println(unit.toString()));
         System.out.println(firstFleet.size());
         System.out.println("Setting up all units with the provided settings.");
     }
     private ArrayList<Unit> createFleet(FleetSettings settings, boolean firstPlayer) {
+
         ArrayList<Unit> fleet = new ArrayList<>();
         for (FortificationType fortificationType : settings.getFortifications()) {
             fleet.add(UnitFactory.create(firstPlayer, fortificationType));
