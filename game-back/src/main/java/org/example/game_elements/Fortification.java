@@ -3,6 +3,7 @@ package org.example.game_elements;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.example.map.Coordinates;
 
 @ToString
 @Getter
@@ -13,6 +14,7 @@ public class Fortification implements Unit {
     private boolean firstPlayer;
     private String type;
     private String id;
+    private Coordinates coordinates;
     private int fire_range;
     private int hit_points;
     private int shots;
@@ -26,8 +28,8 @@ public class Fortification implements Unit {
     }
 
     @Override
-    public void place() {
-
+    public void place(Coordinates coordinates) {
+        this.coordinates = coordinates;
     }
 
     @Override
