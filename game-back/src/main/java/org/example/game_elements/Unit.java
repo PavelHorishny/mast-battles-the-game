@@ -1,7 +1,9 @@
 package org.example.game_elements;
 
+import org.example.map.Coordinates;
+
 public interface Unit {
-    void place();
+    void place(Coordinates coordinates);
     void takeDamage(int damage);
     void repair();
     void destroy();
