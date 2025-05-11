@@ -1,9 +1,13 @@
 package org.example.services.map;
 
+import org.example.game_elements.Fortification;
+import org.example.game_elements.Unit;
 import org.example.map.Coordinates;
 import org.example.map.Surface;
 import org.example.map.SurfaceType;
 import org.example.mockedData.MockedData;
+
+import java.util.ArrayList;
 
 public final class MapProcessor implements MapService {
 
@@ -35,6 +39,75 @@ public final class MapProcessor implements MapService {
             }
         }
         MockedData.LAND.forEach(coordinates -> map[coordinates.axisX()][coordinates.axisY()] = new Surface(coordinates, SurfaceType.LAND));
+    }
+
+    @Override
+    public void placeUnitsOnMap(ArrayList<Unit> fleet) {
+        fleet.forEach(unit -> {
+            switch (unit.getUnitType()){
+                case FORTIFICATION -> placeFortificationOnMap(unit);
+                case VESSEL -> placeVesselOnMap(unit);
+            }
+        });
+    }
+
+    private void placeVesselOnMap(Unit unit) {
+
+    }
+
+    private void placeFortificationOnMap(Unit unit) {
+        Fortification fortification = (Fortification) unit;
+        switch (fortification.getFortificationType()){
+            case FIRST_LINE_FORT -> {
+                Coordinates c;
+                if(fortification.isFirstPlayer()){
+                    c = MockedData.FIRST_PLAYER_FIRST_LINE_FORTS_POSITIONS.stream().filter(coordinates ->
+                                    map[coordinates.axisX()][coordinates.axisY()].isEmpty() && map[coordinates.axisX()][coordinates.axisY()].getType() == SurfaceType.LAND)
+                            .findFirst().get();
+                }else {
+                    c = MockedData.SECOND_PLAYER_FIRST_LINE_FORTS_POSITIONS.stream().filter(coordinates ->
+                                    map[coordinates.axisX()][coordinates.axisY()].isEmpty() && map[coordinates.axisX()][coordinates.axisY()].getType() == SurfaceType.LAND)
+                            .findFirst().get();
+                }
+                map[c.axisX()][c.axisY()].setUnit(fortification);
+                fortification.place(c);
+            }
+            case SECOND_LINE_FORT -> {
+                Coordinates c;
+                if(fortification.isFirstPlayer()){
+                    c = MockedData.FIRST_PLAYER_SECOND_LINE_FORTS_POSITIONS.stream().filter(coordinates ->
+                                    map[coordinates.axisX()][coordinates.axisY()].isEmpty() && map[coordinates.axisX()][coordinates.axisY()].getType() == SurfaceType.LAND)
+                            .findFirst().get();
+                }else {
+                    c = MockedData.SECOND_PLAYER_SECOND_LINE_FORTS_POSITIONS.stream().filter(coordinates ->
+                                    map[coordinates.axisX()][coordinates.axisY()].isEmpty() && map[coordinates.axisX()][coordinates.axisY()].getType() == SurfaceType.LAND)
+                            .findFirst().get();
+                }
+                map[c.axisX()][c.axisY()].setUnit(fortification);
+                fortification.place(c);
+            }
+            case ROYAL_PORT -> {
+                if(fortification.isFirstPlayer()){
+                    for(Coordinates coordinates : MockedData.FIRST_PLAYER_ROYAL_PORT_POSITIONS){
+                        if(map[coordinates.axisX()][coordinates.axisY()].isEmpty()){
+                            if(map[coordinates.axisX()][coordinates.axisY()].getType()==SurfaceType.LAND){
+                                map[coordinates.axisX()][coordinates.axisY()].setUnit(fortification);
+                                fortification.place(coordinates);
+                            }
+                        }
+                    }
+                }else {
+                    for(Coordinates coordinates : MockedData.SECOND_PLAYER_ROYAL_PORT_POSITIONS){
+                        if(map[coordinates.axisX()][coordinates.axisY()].isEmpty()){
+                            if(map[coordinates.axisX()][coordinates.axisY()].getType()==SurfaceType.LAND){
+                                map[coordinates.axisX()][coordinates.axisY()].setUnit(fortification);
+                                fortification.place(coordinates);
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 
     @Override
