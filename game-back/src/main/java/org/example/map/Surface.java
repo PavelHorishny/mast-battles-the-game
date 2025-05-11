@@ -16,4 +16,8 @@ public class Surface {
         this.coordinates=coordinates;
         this.type = type;
     }
+
+    public boolean isEmpty(){
+        return unit == null;
+    }
 }
