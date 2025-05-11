@@ -6,24 +6,43 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MockedData {
-    public static final ArrayList<Coordinates> FIRST_PLAYER_FORT_POSITIONS = new ArrayList<>() {
+
+    public static final ArrayList<Coordinates> FIRST_PLAYER_ROYAL_PORT_POSITIONS = new ArrayList<>() {
         {
-            add(new Coordinates(0,26));
+            add(new Coordinates(0,22));
+        }
+    };
+
+    public static final ArrayList<Coordinates> FIRST_PLAYER_SECOND_LINE_FORTS_POSITIONS = new ArrayList<>() {
+        {
             add(new Coordinates(4,7));
             add(new Coordinates(5,21));
             add(new Coordinates(7,23));
+        }
+    };
+
+    public static final ArrayList<Coordinates> FIRST_PLAYER_FIRST_LINE_FORTS_POSITIONS = new ArrayList<>() {
+        {
             add(new Coordinates(8,15));
             add(new Coordinates(10,28));
             add(new Coordinates(11,5));
         }
     };
 
-    public static final ArrayList<Coordinates> SECOND_PLAYER_FORT_POSITIONS = new ArrayList<>() {
+    public static final ArrayList<Coordinates> SECOND_PLAYER_ROYAL_PORT_POSITIONS = new ArrayList<>() {
         {
             add(new Coordinates(33,7));
+        }
+    };
+    public static final ArrayList<Coordinates> SECOND_PLAYER_SECOND_LINE_FORTS_POSITIONS = new ArrayList<>() {
+        {
             add(new Coordinates(32,12));
             add(new Coordinates(30,19));
             add(new Coordinates(27,6));
+        }
+    };
+    public static final ArrayList<Coordinates> SECOND_PLAYER_FIRST_LINE_FORTS_POSITIONS = new ArrayList<>() {
+        {
             add(new Coordinates(24,16));
             add(new Coordinates(23,25));
             add(new Coordinates(22,3));
@@ -34,7 +53,7 @@ public class MockedData {
      * List of names for fortifications
      * */
 
-    public static final List<String> FORTIFICATIONS_NAMES = new ArrayList<String>(){{
+    public static final List<String> FORTIFICATIONS_NAMES = new ArrayList<>() {{
         add("Fort Alexander");
         add("Fort Constantin");
         add("Fort Denison");
