@@ -4,6 +4,9 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import org.example.map.Coordinates;
+import org.example.map.Surface;
+
+import java.util.ArrayList;
 
 @ToString
 @Getter
@@ -19,6 +22,9 @@ public class Fortification implements Unit {
     private int hit_points;
     private int shots;
     private int movePoints;
+
+    @Setter
+    private ArrayList<Surface> port = new ArrayList<>();
 
     public <T> Fortification(T fortificationType, boolean firstPlayer) {
         this.firstPlayer = firstPlayer;
