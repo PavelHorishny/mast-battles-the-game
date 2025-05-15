@@ -59,32 +59,39 @@ public final class MapProcessor implements MapService {
         Fortification fortification = (Fortification) unit;
         switch (fortification.getFortificationType()){
             case FIRST_LINE_FORT -> {
-                Coordinates c;
                 if(fortification.isFirstPlayer()){
-                    c = MockedData.FIRST_PLAYER_FIRST_LINE_FORTS_POSITIONS.stream().filter(coordinates ->
+                     MockedData.FIRST_PLAYER_FIRST_LINE_FORTS_POSITIONS.stream().filter(coordinates ->
                                     map[coordinates.axisX()][coordinates.axisY()].isEmpty() && map[coordinates.axisX()][coordinates.axisY()].getType() == SurfaceType.LAND)
-                            .findFirst().get();
+                            .findFirst().ifPresent(c->{
+                                map[c.axisX()][c.axisY()].setUnit(fortification);
+                                fortification.place(c);
+                            });
                 }else {
-                    c = MockedData.SECOND_PLAYER_FIRST_LINE_FORTS_POSITIONS.stream().filter(coordinates ->
+                    MockedData.SECOND_PLAYER_FIRST_LINE_FORTS_POSITIONS.stream().filter(coordinates ->
                                     map[coordinates.axisX()][coordinates.axisY()].isEmpty() && map[coordinates.axisX()][coordinates.axisY()].getType() == SurfaceType.LAND)
-                            .findFirst().get();
+                            .findFirst().ifPresent(c->{
+                                map[c.axisX()][c.axisY()].setUnit(fortification);
+                                fortification.place(c);
+                            });
                 }
-                map[c.axisX()][c.axisY()].setUnit(fortification);
-                fortification.place(c);
             }
             case SECOND_LINE_FORT -> {
-                Coordinates c;
+               // Coordinates c;
                 if(fortification.isFirstPlayer()){
-                    c = MockedData.FIRST_PLAYER_SECOND_LINE_FORTS_POSITIONS.stream().filter(coordinates ->
+                     MockedData.FIRST_PLAYER_SECOND_LINE_FORTS_POSITIONS.stream().filter(coordinates ->
                                     map[coordinates.axisX()][coordinates.axisY()].isEmpty() && map[coordinates.axisX()][coordinates.axisY()].getType() == SurfaceType.LAND)
-                            .findFirst().get();
+                            .findFirst().ifPresent(c->{
+                                map[c.axisX()][c.axisY()].setUnit(fortification);
+                                fortification.place(c);
+                            });
                 }else {
-                    c = MockedData.SECOND_PLAYER_SECOND_LINE_FORTS_POSITIONS.stream().filter(coordinates ->
+                    MockedData.SECOND_PLAYER_SECOND_LINE_FORTS_POSITIONS.stream().filter(coordinates ->
                                     map[coordinates.axisX()][coordinates.axisY()].isEmpty() && map[coordinates.axisX()][coordinates.axisY()].getType() == SurfaceType.LAND)
-                            .findFirst().get();
+                            .findFirst().ifPresent(coordinates -> {
+                                map[coordinates.axisX()][coordinates.axisY()].setUnit(fortification);
+                                fortification.place(coordinates);
+                            });
                 }
-                map[c.axisX()][c.axisY()].setUnit(fortification);
-                fortification.place(c);
             }
             case ROYAL_PORT -> {
                 if(fortification.isFirstPlayer()){
