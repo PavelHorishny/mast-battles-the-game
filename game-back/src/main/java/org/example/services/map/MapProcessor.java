@@ -61,14 +61,14 @@ public final class MapProcessor implements MapService {
             case FIRST_LINE_FORT -> {
                 if(fortification.isFirstPlayer()){
                      MockedData.FIRST_PLAYER_FIRST_LINE_FORTS_POSITIONS.stream().filter(coordinates ->
-                                    map[coordinates.axisX()][coordinates.axisY()].isEmpty() && map[coordinates.axisX()][coordinates.axisY()].getType() == SurfaceType.LAND)
+                                    isSurfaceEmpty(coordinates) && map[coordinates.axisX()][coordinates.axisY()].getType() == SurfaceType.LAND)
                             .findFirst().ifPresent(c->{
                                 map[c.axisX()][c.axisY()].setUnit(fortification);
                                 fortification.place(c);
                             });
                 }else {
                     MockedData.SECOND_PLAYER_FIRST_LINE_FORTS_POSITIONS.stream().filter(coordinates ->
-                                    map[coordinates.axisX()][coordinates.axisY()].isEmpty() && map[coordinates.axisX()][coordinates.axisY()].getType() == SurfaceType.LAND)
+                                    isSurfaceEmpty(coordinates) && map[coordinates.axisX()][coordinates.axisY()].getType() == SurfaceType.LAND)
                             .findFirst().ifPresent(c->{
                                 map[c.axisX()][c.axisY()].setUnit(fortification);
                                 fortification.place(c);
@@ -79,14 +79,14 @@ public final class MapProcessor implements MapService {
                // Coordinates c;
                 if(fortification.isFirstPlayer()){
                      MockedData.FIRST_PLAYER_SECOND_LINE_FORTS_POSITIONS.stream().filter(coordinates ->
-                                    map[coordinates.axisX()][coordinates.axisY()].isEmpty() && map[coordinates.axisX()][coordinates.axisY()].getType() == SurfaceType.LAND)
+                                    isSurfaceEmpty(coordinates) && map[coordinates.axisX()][coordinates.axisY()].getType() == SurfaceType.LAND)
                             .findFirst().ifPresent(c->{
                                 map[c.axisX()][c.axisY()].setUnit(fortification);
                                 fortification.place(c);
                             });
                 }else {
                     MockedData.SECOND_PLAYER_SECOND_LINE_FORTS_POSITIONS.stream().filter(coordinates ->
-                                    map[coordinates.axisX()][coordinates.axisY()].isEmpty() && map[coordinates.axisX()][coordinates.axisY()].getType() == SurfaceType.LAND)
+                                    isSurfaceEmpty(coordinates) && map[coordinates.axisX()][coordinates.axisY()].getType() == SurfaceType.LAND)
                             .findFirst().ifPresent(coordinates -> {
                                 map[coordinates.axisX()][coordinates.axisY()].setUnit(fortification);
                                 fortification.place(coordinates);
@@ -96,7 +96,7 @@ public final class MapProcessor implements MapService {
             case ROYAL_PORT -> {
                 if(fortification.isFirstPlayer()){
                     for(Coordinates coordinates : MockedData.FIRST_PLAYER_ROYAL_PORT_POSITIONS){
-                        if(map[coordinates.axisX()][coordinates.axisY()].isEmpty()){
+                        if(isSurfaceEmpty(coordinates)){
                             if(map[coordinates.axisX()][coordinates.axisY()].getType()==SurfaceType.LAND){
                                 map[coordinates.axisX()][coordinates.axisY()].setUnit(fortification);
                                 fortification.place(coordinates);
@@ -105,7 +105,7 @@ public final class MapProcessor implements MapService {
                     }
                 }else {
                     for(Coordinates coordinates : MockedData.SECOND_PLAYER_ROYAL_PORT_POSITIONS){
-                        if(map[coordinates.axisX()][coordinates.axisY()].isEmpty()){
+                        if(isSurfaceEmpty(coordinates)){
                             if(map[coordinates.axisX()][coordinates.axisY()].getType()==SurfaceType.LAND){
                                 map[coordinates.axisX()][coordinates.axisY()].setUnit(fortification);
                                 fortification.place(coordinates);
@@ -120,5 +120,8 @@ public final class MapProcessor implements MapService {
     @Override
     public Surface[][] getMap() {
         return map;
+    }
+    public boolean isSurfaceEmpty(Coordinates coordinates){
+        return map[coordinates.axisX()][coordinates.axisY()].isEmpty();
     }
 }
