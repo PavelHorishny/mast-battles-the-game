@@ -2,12 +2,16 @@ package org.example.services.map;
 
 import org.example.game_elements.Fortification;
 import org.example.game_elements.Unit;
+import org.example.map.CardinalPoint;
 import org.example.map.Coordinates;
 import org.example.map.Surface;
 import org.example.map.SurfaceType;
 import org.example.mockedData.MockedData;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
 public final class MapProcessor implements MapService {
 
@@ -113,8 +117,34 @@ public final class MapProcessor implements MapService {
     public boolean isSurfaceLand(Coordinates coordinates){
         return map[coordinates.axisX()][coordinates.axisY()].getType() == SurfaceType.LAND;
     }
+    public boolean isSurfaceWater(Coordinates coordinates){
+        return map[coordinates.axisX()][coordinates.axisY()].getType() == SurfaceType.WATER;
+    }
     public void placeFortificationOnSurface(Fortification fortification, Coordinates coordinates){
         map[coordinates.axisX()][coordinates.axisY()].setUnit(fortification);
         fortification.place(coordinates);
+        fortification.setPort(getPort(fortification));
     }
+
+    public ArrayList<Surface> getPort(Fortification fortification){
+        ArrayList <Surface> tmp = new ArrayList<>();
+/*
+        Coordinates coordinates = fortification.getCoordinates();
+*/
+        Arrays.stream(CardinalPoint.cardinalPoints).forEach(cardinalPoint -> {
+            Coordinates coordinates = new Coordinates(fortification.getCoordinates().axisX()+cardinalPoint.getValue().axisX(),fortification.getCoordinates().axisY()+cardinalPoint.getValue().axisY());
+            if(checkIfPositionIsValid(coordinates)){
+                if (isSurfaceWater(coordinates)){
+                     map[coordinates.axisX()][coordinates.axisY()].setType(SurfaceType.PORT);
+                     tmp.add(map[coordinates.axisX()][coordinates.axisY()]);
+                }
+            }
+        });
+        return tmp;
+    }
+
+    public boolean checkIfPositionIsValid(Coordinates coordinates) {
+        return coordinates.axisX()<map.length && coordinates.axisX()>=0 && coordinates.axisY()<map[0].length && coordinates.axisY()>=0;
+    }
+
 }
