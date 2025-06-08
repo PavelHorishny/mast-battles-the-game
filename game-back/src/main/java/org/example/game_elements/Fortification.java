@@ -71,4 +71,7 @@ public class Fortification implements Unit {
     public void setId(String id) {
         this.id = id;
     }
+    public boolean testEmptinessOfPort(){
+        return port.stream().allMatch(Surface::isEmpty);
+    }
 }
