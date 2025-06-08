@@ -10,8 +10,9 @@ import org.example.mockedData.MockedData;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.Stack;
+
+import static java.util.stream.Collectors.groupingBy;
 
 public final class MapProcessor implements MapService {
 
@@ -50,16 +51,56 @@ public final class MapProcessor implements MapService {
         fleet.forEach(unit -> {
             switch (unit.getUnitType()){
                 case FORTIFICATION -> placeFortificationOnMap(unit);
-                case VESSEL -> placeVesselOnMap(unit);
+                //case VESSEL -> placeVesselOnMap(unit);
             }
         });
     }
-
-    private void placeVesselOnMap(Unit unit) {
+    @Override
+    public void placeVesselOnMap(Stack<Unit> vessels, ArrayList<Unit> fortifications) {
+         /*   fortifications.stream().filter(unit -> unit.getUnitType().equals(UnitType.FORTIFICATION))
+                    .map(Fortification.class::cast)
+                    .filter(unit -> unit.getFortificationType().equals(FortificationType.SECOND_LINE_FORT))
+                    .forEach(unit -> System.out.println(unit.toString()));*/
+/*            fortifications.stream().map(Fortification.class::cast)
+                    .collect(groupingBy(Fortification::getFortificationType,collectingAndThen(Collectors.toList(),list -> {
+                        list.forEach(unit->{
+                                        System.out.println("From placeVesselOnMap: ");
+                                System.out.println(unit.toString());
+                        });
+                        return null;
+                    })));*/
+        fortifications.stream()
+                .filter(f -> f instanceof Fortification)
+                .map(Fortification.class::cast)
+                .collect(groupingBy(Fortification::getFortificationType))
+                .forEach((type, list) -> {
+                    list.forEach(unit -> {
+                        System.out.println("From placeVesselOnMap: ");
+                        System.out.println(unit);
+                        System.out.println("Port size: " + unit.getPort().size());
+                    });
+                });
+        fortifications.stream().filter(f-> f instanceof Fortification).map(Fortification.class::cast).forEach(fortification -> placeVesselInPort(fortification,vessels));
 
     }
-
-    private void placeFortificationOnMap(Unit unit) {
+    private void placeVesselInPort(Fortification fortification, Stack<Unit> vessels) {
+       switch (fortification.getFortificationType()){
+           case FIRST_LINE_FORT -> {
+               //add 4 vessels to each port
+               for (int i = 0;i<4;i++){
+                   fortification.getPort().get(i).setUnit(vessels.pop());
+               }
+           }
+           case SECOND_LINE_FORT -> {
+               int size = fortification.getPort().size()>5 ? 6 : 5;
+               for (int i = 0; i<size;i++){
+                   fortification.getPort().get(i).setUnit(vessels.pop());
+               }
+           }
+       }
+    }
+    @Override
+    public void placeFortificationOnMap(Unit unit) {
         Fortification fortification = (Fortification) unit;
         switch (fortification.getFortificationType()){
             case FIRST_LINE_FORT -> {
@@ -128,9 +169,7 @@ public final class MapProcessor implements MapService {
 
     public ArrayList<Surface> getPort(Fortification fortification){
         ArrayList <Surface> tmp = new ArrayList<>();
-/*
-        Coordinates coordinates = fortification.getCoordinates();
-*/
+
         Arrays.stream(CardinalPoint.cardinalPoints).forEach(cardinalPoint -> {
             Coordinates coordinates = new Coordinates(fortification.getCoordinates().axisX()+cardinalPoint.getValue().axisX(),fortification.getCoordinates().axisY()+cardinalPoint.getValue().axisY());
             if(checkIfPositionIsValid(coordinates)){
