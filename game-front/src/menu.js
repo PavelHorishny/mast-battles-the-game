@@ -5,9 +5,6 @@ document.getElementById('start').onclick = () => {
 document.getElementById('quit').onclick = () => {
     window.api.quit();
 };
-document.getElementById('back').onclick = () => {
-    window.api.restart();
-};
 /*
 function bind(id, handler) {
     const el = document.getElementById(id);
