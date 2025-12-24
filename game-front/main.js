@@ -37,6 +37,7 @@ function createWindow() {
         mainWindow.loadFile('dist/index.html');
         gameWindow.loadFile('dist/.game.html');
     }
+    gameWindow.webContents.openDevTools();
 }
 
 ipcMain.on('start', () => {
