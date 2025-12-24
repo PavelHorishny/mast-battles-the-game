@@ -31,11 +31,10 @@ function createWindow() {
 
     if (isDev) {
         mainWindow.loadURL(VITE_URL + '/main-win/index.html');
-        //gameWindow.loadURL(VITE_URL + '/.game.html');
         gameWindow.loadURL(VITE_URL + '/game-win/index.html');
     } else {
-        mainWindow.loadFile('dist/index.html');
-        gameWindow.loadFile('dist/.game.html');
+        /*mainWindow.loadFile('dist/index.html');
+        gameWindow.loadFile('dist/.game.html');*/
     }
     gameWindow.webContents.openDevTools();
 }
