@@ -4,13 +4,20 @@
   "description": "",
   "main": "main.js",
   "scripts": {
-    "start": "electron .",
+    "dev": "vite",
+    "electron": "electron .",
+    "start": "concurrently \"vite\" \"electron .\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "contributors": ["Valerii", "Pavel Horishny"],
+  "contributors": ["Pavel Horishny"],
   "license": "ISC",
   "dependencies": {
-    "electron": "^35.2.0"
+    "pixi.js": "^8.14.3"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1",
+    "electron": "^39.2.7",
+    "vite": "^7.3.0"
   }
 }
