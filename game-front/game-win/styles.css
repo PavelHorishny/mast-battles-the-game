@@ -39,7 +39,8 @@ body {
         .block-3 {
             width: 260px;
             height: 400px;
-            background: #e67e22; /* оранжевый */
+            background: url("../main-win/img/info-bcg.png") no-repeat;
+            background-size: cover;
         }
 
         .block-4 {
