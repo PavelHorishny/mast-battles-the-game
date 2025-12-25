@@ -1,6 +1,6 @@
-import {Application, Assets, Container, Graphics, Sprite, Texture} from 'pixi.js';
+import {Application, Assets, Container, Sprite, Texture} from 'pixi.js';
 import { generateMap } from './mapgen.js';
-import {TILE} from "./tile";
+
 
 const app = new Application();
 
