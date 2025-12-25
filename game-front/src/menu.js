@@ -20,3 +20,37 @@ document.addEventListener('DOMContentLoaded', () => {
     bind('quit', () => window.api.quit());
     bind('back', () => window.api.restart());
 });*/
+/*const ACTIONS = {
+    start: () => window.api?.start(),
+    quit: () => window.api?.quit(),
+    restart: () => window.api?.restart(),
+};
+
+function bindButton(id, action) {
+    const el = document.getElementById(id);
+
+    if (!el) {
+        console.info(`[menu] кнопка #${id} не найдена`);
+        return;
+    }
+
+    el.addEventListener('click', (e) => {
+        e.preventDefault();
+        action();
+    });
+
+    console.info(`[menu] кнопка #${id} подключена`);
+}
+
+function initMenu() {
+    Object.entries(ACTIONS).forEach(([id, action]) => {
+        bindButton(id, action);
+    });
+}
+
+// гарантируем DOM
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initMenu);
+} else {
+    initMenu();
+}*/
