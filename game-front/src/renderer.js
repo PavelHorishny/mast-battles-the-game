@@ -1,10 +1,23 @@
-import { Application, Graphics } from 'pixi.js';
+import {Application, Assets, Container, Graphics, Sprite, Texture} from 'pixi.js';
+import { generateMap } from './mapgen.js';
+import {TILE} from "./tile";
 
 const app = new Application();
 
+
+await Assets.load([
+    { alias: 'water', src: '/water.png' },
+    { alias: 'land',  src: '/land.png' }
+]);
+
+const textures = {
+    0: Texture.from('water'),
+    1: Texture.from('land')
+};
+
 await app.init({
-    width: 260,
-    height: 260,
+    width: 1020,
+    height: 960,
     backgroundColor: 0x333333,
     resolution: window.devicePixelRatio,
     autoDensity: true
@@ -12,9 +25,28 @@ await app.init({
 
 document.getElementById('mini-map').appendChild(app.canvas);
 
-// test
-const g = new Graphics()
-    .rect(10, 10, 50, 50)
-    .fill(0xff0000);
+const map = {
+    width: 34,
+    height: 32,
+    tileSize: 30,
+    tiles: generateMap(34, 32)
+};
 
-app.stage.addChild(g);
+
+const world = new Container();
+app.stage.addChild(world);
+
+function drawMap(map) {
+    for (let y = 0; y < map.height; y++) {
+        for (let x = 0; x < map.width; x++) {
+            const id = map.tiles[y * map.width + x];
+            const tile = new Sprite(textures[id]);
+
+            tile.x = x * map.tileSize;
+            tile.y = y * map.tileSize;
+
+            world.addChild(tile);
+        }
+    }
+}
+drawMap(map);
