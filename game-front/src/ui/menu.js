@@ -8,6 +8,8 @@ document.getElementById('quit').onclick = () => {
 document.addEventListener('DOMContentLoaded', () => {
     const startBtn = document.getElementById('start');
     const quitBtn = document.getElementById('quit');
+    //const restartBtn = document.getElementById('restart');
+
 
     startBtn.onclick = () => {
         window.api.start();
@@ -16,6 +18,9 @@ document.addEventListener('DOMContentLoaded', () => {
     quitBtn.onclick = () => {
         window.api.quit();
     };
+ /*   restartBtn.onclick = () => {
+        window.api.restart();
+    };*/
 });
 console.log('menu loaded');
 console.log('api:', window.api);

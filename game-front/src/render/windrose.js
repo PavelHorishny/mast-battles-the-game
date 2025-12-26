@@ -1,6 +1,9 @@
 import { Application, Graphics, Text, Container } from 'pixi.js';
 
-const app = new Application();
+const SIZE = 260;
+const CENTER = SIZE / 2;
+const MAX_RADIUS = 80;
+
 const windData = [
     { dir: 'N',  value: 30 },
     { dir: 'NE', value: 15 },
@@ -12,67 +15,79 @@ const windData = [
     { dir: 'NW', value: 18 }
 ];
 
-const container = document.getElementById('rose-area');
+// --------------------
+// APP
+const app = new Application();
 await app.init({
-    resizeTo: container,
-    //background: '#1e1e1e',
+    width: SIZE,
+    height: SIZE,
+    backgroundColor: 0x3b9ad9,
     antialias: true
 });
 
 document.getElementById('rose-area').appendChild(app.canvas);
 
-// -----------------------------
-
-const centerX = 260 / 2;
-const centerY = 260 / 2;
-const maxRadius = 75;
-
+// --------------------
+// MAIN CONTAINER
 const rose = new Container();
-rose.x = centerX;
-rose.y = centerY;
+rose.position.set(CENTER, CENTER);
 app.stage.addChild(rose);
 
-// tooltip
-const tooltip = new Text('', {
-    fill: '#ffffff',
-    fontSize: 10
+// --------------------
+// TOOLTIP
+const tooltip = new Text({
+    text: '',
+    style: {
+        fill: '#ffffff',
+        fontSize: 11
+    }
 });
 tooltip.visible = false;
 app.stage.addChild(tooltip);
 
-// шкала
+// --------------------
+// SCALE
 const maxValue = Math.max(...windData.map(d => d.value));
 
-// -----------------------------
-// оси
+// --------------------
+// AXES
 const axes = new Graphics();
-axes.stroke({ width: 1, color: 0x555555 });
+axes.strokeStyle = { width: 1, color: 0x555555 };
 
 for (let i = 0; i < 8; i++) {
     const angle = (Math.PI * 2 / 8) * i - Math.PI / 2;
     axes.moveTo(0, 0);
     axes.lineTo(
-        Math.cos(angle) * maxRadius,
-        Math.sin(angle) * maxRadius
+        Math.cos(angle) * MAX_RADIUS,
+        Math.sin(angle) * MAX_RADIUS
     );
 }
 
+axes.stroke(); // 🔴 ОБЯЗАТЕЛЬНО в Pixi 8
 rose.addChild(axes);
 
-// -----------------------------
-// лучи
+// --------------------
+// RAYS + LABELS
 windData.forEach((d, i) => {
     const angle = (Math.PI * 2 / windData.length) * i - Math.PI / 2;
-    const length = (d.value / maxValue) * maxRadius;
+    const length = (d.value / maxValue) * MAX_RADIUS;
 
+    // RAY
     const ray = new Graphics();
-    ray.stroke({ width: 18, color: 0x4fc3f7, alpha: 0.8 });
+    ray.strokeStyle = {
+        width: 16,
+        color: 0x4fc3f7,
+        alpha: 0.85,
+        cap: 'round'
+    };
+
     ray.moveTo(0, 0);
     ray.lineTo(
         Math.cos(angle) * length,
         Math.sin(angle) * length
     );
 
+    ray.stroke(); // 🔴 ОБЯЗАТЕЛЬНО
     ray.eventMode = 'static';
     ray.cursor = 'pointer';
 
@@ -88,19 +103,25 @@ windData.forEach((d, i) => {
     });
 
     ray.on('pointermove', (e) => {
-        tooltip.x = e.global.x + 10;
-        tooltip.y = e.global.y + 10;
+        tooltip.position.set(e.global.x + 8, e.global.y + 8);
     });
 
     rose.addChild(ray);
 
-    // подпись направления
-    const label = new Text(d.dir, {
-        fill: '#aaaaaa',
-        fontSize: 10
+    // LABEL
+    const label = new Text({
+        text: d.dir,
+        style: {
+            fill: '#dddddd',
+            fontSize: 11
+        }
     });
 
-    label.x = Math.cos(angle) * (maxRadius + 20) - label.width / 2;
-    label.y = Math.sin(angle) * (maxRadius + 20) - label.height / 2;
+    label.anchor.set(0.5);
+    label.position.set(
+        Math.cos(angle) * (MAX_RADIUS + 18),
+        Math.sin(angle) * (MAX_RADIUS + 18)
+    );
+
     rose.addChild(label);
 });
