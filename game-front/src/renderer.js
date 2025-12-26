@@ -1,5 +1,6 @@
-import {Application, Assets, Container, Sprite, Texture} from 'pixi.js';
-import { generateMap } from './mapgen.js';
+import {Application, Assets} from 'pixi.js';
+import {MapRenderer} from "./MapRenderer";
+import {GameMap} from "./map";
 
 
 const app = new Application();
@@ -10,10 +11,10 @@ await Assets.load([
     { alias: 'land',  src: '/land.png' }
 ]);
 
-const textures = {
+/*const textures = {
     0: Texture.from('water'),
     1: Texture.from('land')
-};
+};*/
 
 await app.init({
     width: 1020,
@@ -25,6 +26,14 @@ await app.init({
 
 document.getElementById('mini-map').appendChild(app.canvas);
 
+const map = new GameMap(34, 32);
+map.generateMap();
+
+const mapRenderer = new MapRenderer(map, 30);
+mapRenderer.draw();
+
+app.stage.addChild(mapRenderer.container);
+/*
 const map = {
     width: 34,
     height: 32,
@@ -49,4 +58,4 @@ function drawMap(map) {
         }
     }
 }
-drawMap(map);
+drawMap(map);*/
