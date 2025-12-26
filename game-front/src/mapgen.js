@@ -1,4 +1,4 @@
-import {TILE} from "./tile";
+import {TILE} from "./core/tile";
 
 export function generateMap(width, height, landRatio = 0.2) {
     const tiles = new Array(width * height).fill(TILE.WATER);

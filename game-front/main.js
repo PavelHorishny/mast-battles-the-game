@@ -30,8 +30,8 @@ function createWindow() {
     });
 
     if (isDev) {
-        mainWindow.loadURL(VITE_URL + '/main-win/index.html');
-        gameWindow.loadURL(VITE_URL + '/game-win/index.html');
+        mainWindow.loadURL(VITE_URL + '/windows/main/index.html');
+        gameWindow.loadURL(VITE_URL + '/windows/game/index.html');
     } else {
         /*mainWindow.loadFile('dist/index.html');
         gameWindow.loadFile('dist/.game.html');*/
