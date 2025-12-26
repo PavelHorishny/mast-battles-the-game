@@ -49,7 +49,7 @@ body {
         .block-3 {
             width: 260px;
             height: 400px;
-            background: url("../main-win/img/info-bcg.png") no-repeat;
+            background: url("../main/img/info-bcg.png") no-repeat;
             background-size: cover;
         }
 

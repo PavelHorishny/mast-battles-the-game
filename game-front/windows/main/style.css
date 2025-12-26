@@ -6,7 +6,7 @@
 
 body {
   height: 100vh;
-  background: url("../main-win/img/backround.png") no-repeat center center fixed;
+  background: url("img/backround.png") no-repeat center center fixed;
   background-size: contain;
   display: flex;
   justify-content: center;

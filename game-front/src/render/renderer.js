@@ -1,6 +1,6 @@
 import {Application, Assets} from 'pixi.js';
 import {MapRenderer} from "./MapRenderer";
-import {GameMap} from "./map";
+import {GameMap} from "../core/gameMap";
 
 
 const app = new Application();
