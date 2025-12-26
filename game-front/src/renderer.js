@@ -1,4 +1,4 @@
-import {Application, Assets, Container, Sprite, Texture} from 'pixi.js';
+import {Application, Assets, Texture} from 'pixi.js';
 import {MapRenderer} from "./MapRenderer";
 import {GameMap} from "./map";
 
