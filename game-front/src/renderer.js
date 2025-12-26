@@ -11,10 +11,10 @@ await Assets.load([
     { alias: 'land',  src: '/land.png' }
 ]);
 
-const textures = {
+/*const textures = {
     0: Texture.from('water'),
     1: Texture.from('land')
-};
+};*/
 
 await app.init({
     width: 1020,
