@@ -1,5 +1,5 @@
 import {Container, Sprite, Texture} from "pixi.js";
-import {TileType} from "../core/tile.js";
+import {TileType} from "@/core/tile";
 
 export class MapRenderer{
     constructor(gameMap, tileSize) {
