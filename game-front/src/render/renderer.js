@@ -1,6 +1,7 @@
 import {Application, Assets} from 'pixi.js';
 import {MapRenderer} from "./MapRenderer";
 import {GameMap} from "@/core/gameMap";
+import { GridRenderer } from "@/render/GridRenderer";
 
 
 const app = new Application();
@@ -29,4 +30,13 @@ map.generateMap();
 const mapRenderer = new MapRenderer(map, 30);
 mapRenderer.draw();
 
+const cols = map.width;
+const rows = map.height;
+const tileSize = mapRenderer.tileSize;
+
+const grid = new GridRenderer(cols,rows, tileSize);
+grid.x = mapRenderer.container.x;
+grid.y = mapRenderer.container.y;
+
 app.stage.addChild(mapRenderer.container);
+app.stage.addChild(grid);
