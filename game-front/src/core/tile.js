@@ -10,7 +10,9 @@ export const COORDINATES = {
 
 export const TileType = {
     WATER: 'water',
-    LAND: 'land'
+    LAND: 'land',
+    PORT: 'port',
+    ROUTE: 'route'
 }
 
 export class Tile {
