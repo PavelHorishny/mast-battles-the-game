@@ -41,6 +41,6 @@ grid.visible = false;
 app.stage.addChild(mapRenderer.container);
 app.stage.addChild(grid);
 
-document.getElementById('Grid')?.addEventListener('click', (event) => {
+document.getElementById('Grid')?.addEventListener('click', () => {
     grid.visible = !grid.visible;
 });
