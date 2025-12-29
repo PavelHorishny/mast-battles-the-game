@@ -37,6 +37,10 @@ const tileSize = mapRenderer.tileSize;
 const grid = new GridRenderer(cols,rows, tileSize);
 grid.x = mapRenderer.container.x;
 grid.y = mapRenderer.container.y;
-
+grid.visible = false;
 app.stage.addChild(mapRenderer.container);
 app.stage.addChild(grid);
+
+document.getElementById('Grid')?.addEventListener('click', (event) => {
+    grid.visible = !grid.visible;
+});
