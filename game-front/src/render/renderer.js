@@ -8,7 +8,9 @@ const app = new Application();
 
 await Assets.load([
     { alias: 'water', src: '/water.png' },
-    { alias: 'land',  src: '/land.png' }
+    { alias: 'land',  src: '/land.png' },
+    { alias: 'port',  src: '/port.png' },
+    { alias: 'route', src: '/route.png' }
 ]);
 
 await app.init({
