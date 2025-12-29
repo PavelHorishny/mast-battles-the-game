@@ -9,7 +9,9 @@ export class MapRenderer{
 
         this.texture = {
             [TileType.WATER]: Texture.from('water'),
-            [TileType.LAND]: Texture.from('land')
+            [TileType.LAND]: Texture.from('land'),
+            [TileType.PORT]: Texture.from('port'),
+            [TileType.ROUTE]: Texture.from('route')
         }
     }
 
