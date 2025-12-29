@@ -22,7 +22,17 @@ export class MapRenderer{
             sprite.x = tile.x * this.tileSize;
             sprite.y = tile.y * this.tileSize;
 
+            sprite.tile = tile;
+            sprite.tileX = tile.x;
+            sprite.tileY = tile.y;
+
+            sprite.eventMode = 'static';
+
             this.container.addChild(sprite);
+
+            sprite.on('pointerdown', ()=>{
+                console.log(sprite.tileX, sprite.tileY, sprite.tile.type);
+            })
         }
     }
 }
