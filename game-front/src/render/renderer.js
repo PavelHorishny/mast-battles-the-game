@@ -44,7 +44,8 @@ await Assets.load([
     { alias: 'secondLineFort', src: '/sprites/1_SLFort.png' },
     { alias: '_secondLineFort', src: '/sprites/2_SLFort.png' },
     { alias: '__firstLineFort', src: '/sprites/0_FLFort.png' },
-    { alias: '__secondLineFort', src: '/sprites/0_SLFort.png'}
+    { alias: '__secondLineFort', src: '/sprites/0_SLFort.png'},
+    { alias: 'anchor', src: '/sprites/Anchor.png' }
 ]);
 
 await app.init({
@@ -80,8 +81,15 @@ const testShip = {
     y: 15,
     direction: 90
 };
+const testAnchor = {
+    type: 'anchor',
+    x: 11,
+    y: 15,
+    direction: 0
+};
 
 unitRenderer.addUnit(testShip);
+unitRenderer.addUnit(testAnchor);
 
 app.stage.addChild(mapRenderer.container);
 app.stage.addChild(unitRenderer.container);
