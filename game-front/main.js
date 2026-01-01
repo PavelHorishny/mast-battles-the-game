@@ -32,9 +32,6 @@ function createWindow() {
     if (isDev) {
         mainWindow.loadURL(VITE_URL + '/windows/main/index.html');
         gameWindow.loadURL(VITE_URL + '/windows/game/index.html');
-    } else {
-        /*mainWindow.loadFile('dist/index.html');
-        gameWindow.loadFile('dist/.game.html');*/
     }
     gameWindow.webContents.openDevTools();
 }
@@ -56,7 +53,7 @@ ipcMain.on('restart', () => {
     mainWindow.show();
 });
 
-app.whenReady().then(createWindow)/*on('ready', createWindow)*/;
+app.whenReady().then(createWindow);
 
 app.on('window-all-closed', () => {
     if (process.platform !== 'darwin') {
@@ -69,5 +66,4 @@ app.on('activate', () => {
         createWindow();
     }
 });
-/*
-mainWindow.on('closed', () => (mainWindow = null));*/
+

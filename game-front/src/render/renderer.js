@@ -3,6 +3,7 @@ import {MapRenderer} from "./MapRenderer";
 import {GameMap} from "@/core/gameMap";
 import { GridRenderer } from "@/render/GridRenderer";
 import {UnitRenderer} from "@/render/UnitRenderer";
+import {testAnchor, testShip} from "@/core/constants";
 
 
 const app = new Application();
@@ -74,19 +75,6 @@ const unitRenderer = new UnitRenderer(tileSize);
 grid.x = mapRenderer.container.x;
 grid.y = mapRenderer.container.y;
 grid.visible = false;
-
-const testShip = {
-    type: 'twoDeckerShipOfLine',
-    x: 10,
-    y: 15,
-    direction: 90
-};
-const testAnchor = {
-    type: 'anchor',
-    x: 11,
-    y: 15,
-    direction: 0
-};
 
 unitRenderer.addUnit(testShip);
 unitRenderer.addUnit(testAnchor);
