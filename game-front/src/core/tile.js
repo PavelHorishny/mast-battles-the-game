@@ -1,13 +1,3 @@
-export const TILE = {
-    WATER: 0,
-    LAND: 1
-};
-
-export const COORDINATES = {
-    X:0,
-    Y:1
-}
-
 export const TileType = {
     WATER: 'water',
     LAND: 'land',
