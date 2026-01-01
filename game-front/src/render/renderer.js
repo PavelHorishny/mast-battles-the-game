@@ -75,7 +75,7 @@ grid.y = mapRenderer.container.y;
 grid.visible = false;
 
 const testShip = {
-    type: 'galleon',
+    type: 'twoDeckerShipOfLine',
     x: 10,
     y: 15,
     direction: 90
