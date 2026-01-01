@@ -38,7 +38,8 @@ export class UnitRenderer {
             secondLineFort: Texture.from('secondLineFort'),
             _secondLineFort: Texture.from('_secondLineFort'),
             __firstLineFort: Texture.from('__firstLineFort'),
-            __secondLineFort: Texture.from('__secondLineFort')
+            __secondLineFort: Texture.from('__secondLineFort'),
+            anchor: Texture.from('anchor')
         };
 
         this.units = [];
