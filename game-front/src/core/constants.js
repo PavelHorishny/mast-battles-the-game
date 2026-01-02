@@ -1,3 +1,5 @@
+import {Unit} from "@/core/Unit";
+
 export const LAND = [
     { x: 0, y: 22 }, { x: 0, y: 21 }, { x: 0, y: 23 }, { x: 0, y: 24 },
     { x: 0, y: 25 }, { x: 0, y: 26 }, { x: 0, y: 27 }, { x: 0, y: 28 },
@@ -103,15 +105,30 @@ export const LAND = [
     { x: 33, y: 22 }, { x: 33, y: 23 }
 ];
 
-export const testShip = {
+/*export const testShip = {
     type: 'twoDeckerShipOfLine',
     x: 10,
     y: 16,
     direction: 90
-};
+};*/
+export const testShip = new Unit({
+    id: 'testShip',
+    type: 'brig',
+    x:10,
+    y:16,
+    direction:90
+});
+/*
 export const testAnchor = {
     type: 'anchor',
     x: 11,
     y: 15,
     direction: 0
-};
+};*/
+export const testAnchor = new Unit({
+    id: 'testAnchor',
+    type: 'anchor',
+    x:11,
+    y:15,
+    direction:0
+})
