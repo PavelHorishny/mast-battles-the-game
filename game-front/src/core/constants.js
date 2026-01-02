@@ -106,7 +106,7 @@ export const LAND = [
 export const testShip = {
     type: 'twoDeckerShipOfLine',
     x: 10,
-    y: 15,
+    y: 16,
     direction: 90
 };
 export const testAnchor = {
