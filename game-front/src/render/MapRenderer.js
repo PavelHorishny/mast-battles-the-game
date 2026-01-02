@@ -32,7 +32,12 @@ export class MapRenderer{
 
             sprite.on('pointerdown', ()=>{
                 console.log(sprite.tileX, sprite.tileY, sprite.tile.type);
+                this.onTileClicked?.(sprite.tile);
             })
         }
+    }
+
+    setTileClickHandler(fn) {
+        this.onTileClicked = fn;
     }
 }

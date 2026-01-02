@@ -55,10 +55,21 @@ export class UnitRenderer {
 
         sprite.setDirection(unit.direction ?? 0);
 
+        sprite.eventMode = 'static';
+        sprite.cursor = 'pointer';
+
+        sprite.on('pointerdown', ()=>{
+            this.onUnitClicked?.(unit);
+        });
+
+
+
         this.units.push({unit,sprite});
         this.container.addChild(sprite);
     }
-
+    setClickHandler(fn){
+        this.onUnitClicked = fn;
+    }
     update() {
         for(const u of this.units) {
             u.sprite.setTilePosition(u.unit.x, u.unit.y);

@@ -1,9 +1,11 @@
-import {Application, Assets} from 'pixi.js';
+import {Application, Assets, Container} from 'pixi.js';
 import {MapRenderer} from "./MapRenderer";
 import {GameMap} from "@/core/gameMap";
 import { GridRenderer } from "@/render/GridRenderer";
 import {UnitRenderer} from "@/render/UnitRenderer";
 import {testAnchor, testShip} from "@/core/constants";
+import {SelectionManager} from "@/core/SelectionManager";
+import {TileHighlight} from "@/render/TileHighlight";
 
 
 const app = new Application();
@@ -72,6 +74,9 @@ const tileSize = mapRenderer.tileSize;
 const grid = new GridRenderer(cols,rows, tileSize);
 
 const unitRenderer = new UnitRenderer(tileSize);
+const highlightLayer = new Container();
+const selection = new SelectionManager();
+const highlight = new TileHighlight(tileSize);
 grid.x = mapRenderer.container.x;
 grid.y = mapRenderer.container.y;
 grid.visible = false;
@@ -79,7 +84,19 @@ grid.visible = false;
 unitRenderer.addUnit(testShip);
 unitRenderer.addUnit(testAnchor);
 
+highlightLayer.addChild(highlight);
+
+unitRenderer.setClickHandler((unit)=>{
+    selection.select(unit);
+    highlight.show(unit.x, unit.y);
+});
+mapRenderer.setTileClickHandler(()=>{
+    selection.clear();
+    highlight.hide();
+});
+
 app.stage.addChild(mapRenderer.container);
+app.stage.addChild(highlightLayer);
 app.stage.addChild(unitRenderer.container);
 /*
 app.ticker.add(() => {
