@@ -6,6 +6,8 @@ import {UnitRenderer} from "@/render/UnitRenderer";
 import {testAnchor, testShip} from "@/core/constants";
 import {SelectionManager} from "@/core/SelectionManager";
 import {TileHighlight} from "@/render/TileHighlight";
+import {RouteHighlight} from "@/render/RouteHighlight";
+import {ROUTE} from "@/core/constants";
 
 
 const app = new Application();
@@ -75,6 +77,8 @@ const grid = new GridRenderer(cols,rows, tileSize);
 
 const unitRenderer = new UnitRenderer(tileSize);
 const highlightLayer = new Container();
+const routeLayer = new Container();
+const routeHighlight = new RouteHighlight(tileSize);
 const selection = new SelectionManager();
 const highlight = new TileHighlight(tileSize);
 grid.x = mapRenderer.container.x;
@@ -85,17 +89,21 @@ unitRenderer.addUnit(testShip);
 unitRenderer.addUnit(testAnchor);
 
 highlightLayer.addChild(highlight);
+routeLayer.addChild(routeHighlight.container);
 
 unitRenderer.setClickHandler((unit)=>{
     selection.select(unit);
     highlight.show(unit.x, unit.y);
+    routeHighlight.show(ROUTE);
 });
 mapRenderer.setTileClickHandler(()=>{
     selection.clear();
     highlight.hide();
+    routeHighlight.hide();
 });
 
 app.stage.addChild(mapRenderer.container);
+app.stage.addChild(routeLayer);
 app.stage.addChild(highlightLayer);
 app.stage.addChild(unitRenderer.container);
 /*
