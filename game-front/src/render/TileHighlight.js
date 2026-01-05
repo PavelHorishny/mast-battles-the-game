@@ -1,8 +1,15 @@
-import {Graphics} from "pixi.js";
+import {Graphics, Texture} from "pixi.js";
+import {TileType} from "@/core/tile";
 
 export class TileHighlight extends Graphics {
     constructor(tileSize) {
         super();
+        this.texture = {
+            [TileType.WATER]: Texture.from('water'),
+            [TileType.LAND]: Texture.from('land'),
+            [TileType.PORT]: Texture.from('port'),
+            [TileType.ROUTE]: Texture.from('route')
+        }
         this.tileSize = tileSize;
         this.visible = false;
 
@@ -16,6 +23,8 @@ export class TileHighlight extends Graphics {
             color:0xffff00
         });
     }
+
+
 
     show(tileX, tileY){
         this.x = tileX * this.tileSize;
