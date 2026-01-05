@@ -105,12 +105,6 @@ export const LAND = [
     { x: 33, y: 22 }, { x: 33, y: 23 }
 ];
 
-/*export const testShip = {
-    type: 'twoDeckerShipOfLine',
-    x: 10,
-    y: 16,
-    direction: 90
-};*/
 export const testShip = new Unit({
     id: 'testShip',
     type: 'brig',
@@ -118,13 +112,7 @@ export const testShip = new Unit({
     y:16,
     direction:90
 });
-/*
-export const testAnchor = {
-    type: 'anchor',
-    x: 11,
-    y: 15,
-    direction: 0
-};*/
+
 export const testAnchor = new Unit({
     id: 'testAnchor',
     type: 'anchor',
@@ -132,3 +120,9 @@ export const testAnchor = new Unit({
     y:15,
     direction:0
 })
+
+export const ROUTE = [
+    {x:10, y:16},
+    {x:11, y:16},
+    {x:12, y:16}
+];
