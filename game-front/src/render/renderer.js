@@ -3,7 +3,7 @@ import {MapRenderer} from "./MapRenderer";
 import {GameMap} from "@/core/gameMap";
 import { GridRenderer } from "@/render/GridRenderer";
 import {UnitRenderer} from "@/render/UnitRenderer";
-import {testAnchor, testShip} from "@/core/constants";
+import {testAnchor, testPort, testShip} from "@/core/constants";
 import {SelectionManager} from "@/core/SelectionManager";
 import {TileHighlight} from "@/render/TileHighlight";
 import {RouteHighlight} from "@/render/RouteHighlight";
@@ -87,6 +87,10 @@ grid.visible = false;
 
 unitRenderer.addUnit(testShip);
 unitRenderer.addUnit(testAnchor);
+testPort.forEach((unit)=>{
+    unitRenderer.addUnit(unit);
+})
+
 
 highlightLayer.addChild(highlight);
 routeLayer.addChild(routeHighlight.container);
