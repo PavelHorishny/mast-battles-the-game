@@ -7,7 +7,7 @@ let gameWindow;
 const isDev = !app.isPackaged;
 const VITE_URL = 'http://localhost:5173';
 
-function createWindow() {
+async function createWindow() {
     mainWindow = new BrowserWindow({
         width: 800,
         height: 600,
@@ -30,8 +30,8 @@ function createWindow() {
     });
 
     if (isDev) {
-        mainWindow.loadURL(VITE_URL + '/windows/main/index.html');
-        gameWindow.loadURL(VITE_URL + '/windows/game/index.html');
+        await mainWindow.loadURL(VITE_URL + '/windows/main/index.html');
+        await gameWindow.loadURL(VITE_URL + '/windows/game/index.html');
     }
     gameWindow.webContents.openDevTools();
 }
