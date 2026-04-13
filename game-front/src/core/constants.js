@@ -113,6 +113,106 @@ export const testShip = new Unit({
     direction:90
 });
 
+export const testPort = [
+    new Unit({
+    id: 'testPort',
+    type: 'royalPort',
+    x:0,
+    y:26,
+    direction:0
+}), new Unit({
+    id: 'testPort2',
+        type: 'royalPort',
+        x:33,
+        y:7,
+        direction:0
+    }),
+new Unit({
+    id: 'testPort3',
+    type: 'firstLineFort',
+    x:11,
+    y:5,
+    direction:0
+}),
+new Unit({
+    id: 'testPort4',
+    type: 'firstLineFort',
+    x:8,
+    y:15,
+    direction:0
+}),
+new Unit({
+    id: 'testPort5',
+    type: 'firstLineFort',
+    x:10,
+    y:28,
+    direction:0
+}),
+new Unit({
+    id: 'testPort6',
+    type: 'secondLineFort',
+    x:4,
+    y:7,
+    direction:0
+}),
+new Unit({
+    id: 'testPort7',
+    type: 'secondLineFort',
+    x:5,
+    y:21,
+    direction:0
+}),
+new Unit({
+    id: 'testPort8',
+    type: 'secondLineFort',
+    x:7,
+    y:23,
+    direction:0
+}),
+new Unit({
+    id: 'testPort9',
+    type: 'secondLineFort',
+    x:27,
+    y:6,
+    direction:0
+}),
+    new Unit({
+        id: 'testPort10',
+        type: 'secondLineFort',
+        x:30,
+        y:19,
+        direction:0
+    }),
+    new Unit({
+        id: 'testPort11',
+        type: 'secondLineFort',
+        x:32,
+        y:12,
+        direction:0
+    }),
+    new Unit({
+        id: 'testPort12',
+        type: 'firstLineFort',
+        x:24,
+        y:16,
+        direction:0
+    }),
+    new Unit({
+        id: 'testPort13',
+        type: 'firstLineFort',
+        x:23,
+        y:25,
+        direction:0
+    }),
+    new Unit({
+        id: 'testPort14',
+        type: 'firstLineFort',
+        x:22,
+        y:3,
+        direction:0
+    })
+]
+
 export const testAnchor = new Unit({
     id: 'testAnchor',
     type: 'anchor',
