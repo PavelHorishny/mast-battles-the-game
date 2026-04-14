@@ -116,12 +116,14 @@ export const testShip = new Unit({
 export const testPort = [
     new Unit({
     id: 'testPort',
+        player:true,
     type: 'royalPort',
     x:0,
     y:26,
     direction:0
 }), new Unit({
     id: 'testPort2',
+        player:false,
         type: 'royalPort',
         x:33,
         y:7,
@@ -129,6 +131,7 @@ export const testPort = [
     }),
 new Unit({
     id: 'testPort3',
+    player:true,
     type: 'firstLineFort',
     x:11,
     y:5,
@@ -136,6 +139,7 @@ new Unit({
 }),
 new Unit({
     id: 'testPort4',
+    player:true,
     type: 'firstLineFort',
     x:8,
     y:15,
@@ -143,6 +147,7 @@ new Unit({
 }),
 new Unit({
     id: 'testPort5',
+    player:true,
     type: 'firstLineFort',
     x:10,
     y:28,
@@ -150,6 +155,7 @@ new Unit({
 }),
 new Unit({
     id: 'testPort6',
+    player:true,
     type: 'secondLineFort',
     x:4,
     y:7,
@@ -157,6 +163,7 @@ new Unit({
 }),
 new Unit({
     id: 'testPort7',
+    player:true,
     type: 'secondLineFort',
     x:5,
     y:21,
@@ -164,6 +171,7 @@ new Unit({
 }),
 new Unit({
     id: 'testPort8',
+    player:true,
     type: 'secondLineFort',
     x:7,
     y:23,
@@ -215,6 +223,7 @@ new Unit({
 
 export const testAnchor = new Unit({
     id: 'testAnchor',
+    player:true,
     type: 'anchor',
     x:11,
     y:15,

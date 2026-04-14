@@ -47,7 +47,7 @@ export class UnitRenderer {
 
     addUnit(unit) {
         const sprite = new ShipSprite(
-            this.texture[unit.type],
+            this.texture[unit.player ? unit.type : '_'+unit.type],
             unit.x,
             unit.y,
             this.tileSize

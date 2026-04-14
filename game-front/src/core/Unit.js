@@ -1,6 +1,7 @@
 export class Unit {
-    constructor({id,type,x,y,direction = 0}){
+    constructor({id,player,type,x,y,direction = 0}){
         this.id = id;
+        this.player = player;
         this.type = type;
 
         this.x = x;
