@@ -8,9 +8,11 @@ import {SelectionManager} from "@/core/SelectionManager";
 import {TileHighlight} from "@/render/TileHighlight";
 import {RouteHighlight} from "@/render/RouteHighlight";
 import {ROUTE} from "@/core/constants";
+import {NetworkClient} from "@/core/NetworkClient";
 
 
 const app = new Application();
+const network = new NetworkClient('ws://localhost:8080');
 
 
 await Assets.load([
@@ -62,7 +64,7 @@ await app.init({
 });
 
 document.getElementById('mini-map').appendChild(app.canvas);
-
+network.connect();
 const map = new GameMap(34, 32);
 map.generateMap();
 
