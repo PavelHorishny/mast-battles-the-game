@@ -37,6 +37,11 @@ export class MapRenderer{
         }
     }
 
+    setMap (gameMap){
+        this.map = gameMap;
+        this.container.removeChildren();
+        this.draw();
+    }
     setTileClickHandler(fn) {
         this.onTileClicked = fn;
     }

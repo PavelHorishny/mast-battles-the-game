@@ -74,7 +74,7 @@ export class WindRoseCompass extends Container {
         const spread = Math.PI / 10; //22.5 degrees
 
         this.petalMask.clear();
-        this.petalMask.beginFill(0xffffff);
+        //this.petalMask.beginFill(0xffffff);
         this.petalMask.moveTo(0,0);
         this.petalMask.lineTo(
             Math.cos(angle - spread) * this.radius,
@@ -85,6 +85,6 @@ export class WindRoseCompass extends Container {
             Math.sin(angle + spread) * this.radius
         );
         this.petalMask.closePath();
-        this.petalMask.endFill();
+        this.petalMask.fill(0xffffff);
     }
 }

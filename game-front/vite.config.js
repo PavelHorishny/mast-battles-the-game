@@ -11,6 +11,12 @@ export default defineConfig({
     },
     build: {
         outDir: 'dist',
-        emptyOutDir: true
+        emptyOutDir: true,
+        rollupOptions: {
+            input: {
+                main: path.resolve(__dirname, 'windows/main/index.html'),
+                game: path.resolve(__dirname, 'windows/game/index.html')
+            }
+        }
     }
 });

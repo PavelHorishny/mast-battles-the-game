@@ -34,6 +34,20 @@ export class GameMap {
             }
         }
     }
+
+    loadFromMatrix(matrix) {
+        this.height = matrix.length;
+        this.width = matrix[0].length;
+        this.tiles = [];
+
+        for (let y = 0; y < this.height; y++) {
+            for (let x = 0; x < this.width; x++) {
+                const cell = matrix[y][x];
+                const type = cell.surfaceType === 'LAND' ? TileType.LAND : TileType.WATER;
+                this.tiles.push(new Tile(x,y,type));
+            }
+        }
+    }
     getTile(x, y) {
         if (x < 0 || y < 0 || x >= this.width || y >= this.height) {
             return null;

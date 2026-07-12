@@ -1,39 +1,36 @@
 export class NetworkClient {
-    constructor(url) {
-        this.url = url;
+    constructor() {
         this.socket = null;
     }
 
-    connect() {
-        this.socket = new WebSocket(this.url);
+    connect(onOpen, onMessage, onClose) {
+        console.log('Подключаемся к ws://localhost:8080/events...');
+        this.socket = new WebSocket('ws://localhost:8080/events');
+
         this.socket.onopen = () => {
-            console.log('[WS] Connected to server');
-        }
+            console.log('✅ Хендшейк успешен!');
+            if (onOpen) onOpen();
+        };
 
         this.socket.onmessage = (event) => {
-            const data = JSON.parse(event.data);
-            this.handleMessage(data);
-        }
+            console.log('📩 Данные от сервера получены!');
+            if (onMessage) onMessage(event.data);
+        };
 
         this.socket.onclose = () => {
-            console.log('[WS] Disconnected from server');
-            setTimeout(()=>this.connect(), 3000);
-        }
-        this.socket.onerror = (error) => {
-            console.log('[WS] Socket Error:', error);
+            console.warn('❌ Соединение закрыто');
+            if (onClose) onClose();
+        };
+
+        this.socket.onerror = (err) => {
+            console.error('⚠️ Ошибка сокета (Бэкенд выключен или CORS блокирует):', err);
+        };
+    }
+
+    send(message) {
+        if (this.socket && this.socket.readyState === WebSocket.OPEN) {
+            this.socket.send(message);
         }
     }
 
-    handleMessage(data) {
-        console.log('[WS] Message:', data);
-
-        const event = new CustomEvent('message', {detail: data});
-        window.dispatchEvent(event);
-    }
-
-    send(type, payload) {
-        if(this.socket && this.socket.readyState === WebSocket.OPEN) {
-            this.socket.send(JSON.stringify({type, payload}));
-        }
-    }
 }

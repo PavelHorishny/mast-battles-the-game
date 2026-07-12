@@ -72,7 +72,7 @@ export class UnitRenderer {
     }
     update() {
         for(const u of this.units) {
-            u.sprite.setTilePosition(u.unit.x, u.unit.y);
+            u.sprite.setTilePosition(u.unit.x, u.unit.y, this.tileSize);
             u.sprite.setDirection(u.unit.direction);
         }
     }

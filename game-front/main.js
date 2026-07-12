@@ -32,6 +32,9 @@ async function createWindow() {
     if (isDev) {
         await mainWindow.loadURL(VITE_URL + '/windows/main/index.html');
         await gameWindow.loadURL(VITE_URL + '/windows/game/index.html');
+    }else{
+        await mainWindow.loadFile(path.join(__dirname, 'dist/windows/main/index.html'));
+        await gameWindow.loadFile(path.join(__dirname,'dist/windows/game/index.html'));
     }
     gameWindow.webContents.openDevTools();
 }
@@ -41,6 +44,14 @@ ipcMain.on('start', () => {
     mainWindow.hide();
     gameWindow.show();
 });
+
+ipcMain.on('start-game-with-map', (event,mapData) => {
+    console.log('start game with map data');
+    gameWindow.webContents.send('init-map',mapData);
+
+    mainWindow.hide();
+    gameWindow.show();
+})
 
 ipcMain.on('quit', () => {
     console.log('quit');

@@ -10,9 +10,9 @@ import {RouteHighlight} from "@/render/RouteHighlight";
 import {ROUTE} from "@/core/constants";
 import {NetworkClient} from "@/core/NetworkClient";
 
-
+export async function initRenderer() {
 const app = new Application();
-const network = new NetworkClient('ws://localhost:8080');
+/*const network = new NetworkClient('ws://localhost:8080/events');*/
 
 
 await Assets.load([
@@ -64,13 +64,14 @@ await app.init({
 });
 
 document.getElementById('mini-map').appendChild(app.canvas);
-network.connect();
+/*network.connect();*/
+
 const map = new GameMap(34, 32);
 map.generateMap();
 
 const mapRenderer = new MapRenderer(map, 30);
 mapRenderer.draw();
-
+/*network.send("start", "test");*/
 const cols = map.width;
 const rows = map.height;
 const tileSize = mapRenderer.tileSize;
@@ -121,5 +122,14 @@ app.ticker.add(() => {
 app.stage.addChild(grid);
 
 document.getElementById('Grid')?.addEventListener('click', () => {
+    /*network.send("start","start");*/
     grid.visible = !grid.visible;
 });
+
+    return{
+        updateMap(matrix){
+            map.loadFromMatrix(matrix);
+            mapRenderer.setMap(map);
+        }
+    }
+}
